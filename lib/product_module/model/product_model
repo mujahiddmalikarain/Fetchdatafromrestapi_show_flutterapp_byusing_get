@@ -1,0 +1,56 @@
+// To parse this JSON data, do
+//
+//     final ProductModel = ProductModelFromJson(jsonString);
+
+import 'dart:convert';
+
+List<ProductModel> ProductModelFromJson(String str) => List<ProductModel>.from(json.decode(str).map((x) => ProductModel.fromJson(x)));
+
+String ProductModelToJson(List<ProductModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class ProductModel {
+    ProductModel({
+        required this.id,
+        required  this.name,
+       required  this.price,
+       required  this.priceSign,
+        required  this.currency,
+       required  this.imageLink,
+       
+     
+        
+    });
+
+    int id;
+   
+    String name;
+    String price;
+    String priceSign;
+    String currency;
+    String imageLink;
+    
+
+    factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
+        id: json["id"],
+        
+        name: json["name"],
+        price: json["price"],
+        priceSign: json["price_sign"],
+        currency: json["currency"],
+        imageLink: json["image_link"],
+      
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        
+        "name": name,
+        "price": price,
+        "price_sign": priceSign,
+        "currency": currency,
+        "image_link": imageLink,
+      
+    };
+}
+
+
